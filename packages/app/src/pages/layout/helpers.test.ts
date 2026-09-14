@@ -26,7 +26,6 @@ import { pathKey } from "@/utils/path-key"
 import { ServerConnection } from "@/context/server"
 
 const serverKey = ServerConnection.Key.make
-
 const session = (input: Partial<Session> & Pick<Session, "id" | "directory">) =>
   ({
     title: "",
@@ -63,12 +62,10 @@ describe("layout deep links", () => {
       if (!original) Reflect.deleteProperty(URL, "canParse")
     }
   })
-
   test("ignores open-project deep links without directory", () => {
     expect(parseDeepLink("opencode://open-project")).toBeUndefined()
     expect(parseDeepLink("opencode://open-project?directory=")).toBeUndefined()
   })
-
   test("collects only valid open-project directories", () => {
     const result = collectOpenProjectDeepLinks([
       "opencode://open-project?directory=/a",
@@ -77,7 +74,6 @@ describe("layout deep links", () => {
     ])
     expect(result).toEqual(["/a", "/c"])
   })
-
   test("parses new-session deep links with optional prompt", () => {
     expect(parseNewSessionDeepLink("opencode://new-session?directory=/tmp/demo")).toEqual({ directory: "/tmp/demo" })
     expect(parseNewSessionDeepLink("opencode://new-session?directory=/tmp/demo&prompt=hello%20world")).toEqual({
