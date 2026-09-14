@@ -46,7 +46,6 @@ describe("layout deep links", () => {
     expect(parseDeepLink("opencode://other?directory=/tmp/demo")).toBeUndefined()
     expect(parseDeepLink("https://example.com")).toBeUndefined()
   })
-
   test("ignores malformed deep links safely", () => {
     expect(() => parseDeepLink("opencode://open-project/%E0%A4%A%")).not.toThrow()
     expect(parseDeepLink("opencode://open-project/%E0%A4%A%")).toBeUndefined()
@@ -86,7 +85,6 @@ describe("layout deep links", () => {
     expect(parseNewSessionDeepLink("opencode://new-session")).toBeUndefined()
     expect(parseNewSessionDeepLink("opencode://new-session?directory=")).toBeUndefined()
   })
-
   test("collects only valid new-session deep links", () => {
     const result = collectNewSessionDeepLinks([
       "opencode://new-session?directory=/a",
